@@ -1,0 +1,149 @@
+/* Bookshelf Search, Sort, and View Controls Toolbar */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #4a331f;
+  border: 2px solid #241407;
+  box-shadow:
+    inset 1px 1px 0px #7d5735,
+    inset -1px -1px 0px #1e130a;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.searchSlot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #000000;
+  border: 2px solid #555555;
+  box-shadow:
+    inset 1px 1px 0px #222222,
+    inset -1px -1px 0px #333333;
+  padding: 0 6px;
+  height: 30px;
+  flex: 1;
+  min-width: 140px;
+  max-width: 280px;
+}
+
+.searchSlot:focus-within {
+  border-color: #ffffff;
+}
+
+.searchInput {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  width: 100%;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #888888;
+}
+
+.clearSearchBtn {
+  background: none;
+  border: none;
+  color: #aaaaaa;
+  cursor: pointer;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  padding: 2px;
+}
+
+.clearSearchBtn:hover {
+  color: #ffffff;
+}
+
+.rightControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Sort Selector */
+.sortWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.sortSelect {
+  background-color: #000000;
+  border: 2px solid #555555;
+  box-shadow:
+    inset 1px 1px 0px #222222,
+    inset -1px -1px 0px #333333;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  height: 30px;
+  padding: 0 6px;
+  outline: none;
+  cursor: pointer;
+}
+
+.sortSelect:focus {
+  border-color: #ffffff;
+}
+
+.sortSelect option {
+  background-color: #242424;
+  color: #ffffff;
+}
+
+/* View Mode Toggles */
+.viewToggles {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.viewToggleBtn {
+  background-color: #747474;
+  border: 2px solid #373737;
+  box-shadow:
+    inset 1px 1px 0px #b0b0b0,
+    inset -1px -1px 0px #222222;
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.viewToggleBtn:hover {
+  background-color: #8c8c8c;
+  color: #ffffa0;
+}
+
+.viewToggleBtnActive {
+  background-color: #37535b;
+  border-color: #55ffff;
+  box-shadow:
+    inset 1px 1px 0px #008888,
+    inset -1px -1px 0px #55ffff;
+  color: #ffffa0;
+}
+
+@media (max-width: 768px) {
+  .toolbar { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 6px; }
+  .searchSlot { width: 100%; min-width: 0; max-width: none; height: 44px; }
+  .searchInput { min-width: 0; }
+  .rightControls { min-width: 0; gap: 4px; }
+  .sortWrapper { flex: 1; min-width: 0; }
+  .sortSelect { width: 100%; min-width: 0; height: 44px; }
+  .viewToggleBtn { width: 44px; height: 44px; }
+  .clearSearchBtn { min-width: 32px; min-height: 40px; }
+}

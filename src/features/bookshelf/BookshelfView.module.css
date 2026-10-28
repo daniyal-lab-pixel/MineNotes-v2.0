@@ -1,0 +1,239 @@
+/* Bookshelf Fullscreen GUI */
+
+.bookshelfContainer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: var(--app-height);
+  top: var(--app-top);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: #1a1a1a;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url('/textures/voxel_forest_panorama.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  user-select: none;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Authentic Minecraft Bookshelf Main Window */
+.bookshelfWindow {
+  width: 100%;
+  max-width: 960px;
+  height: 88vh;
+  max-height: 840px;
+  background-color: #c6c6c6;
+  border: 3px solid #000000;
+  box-shadow:
+    inset 3px 3px 0px #ffffff,
+    inset -3px -3px 0px #555555,
+    0 16px 48px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px;
+  box-sizing: border-box;
+  animation: windowPop 0.12s ease-out;
+}
+
+@keyframes windowPop {
+  from {
+    transform: scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Header Section */
+.windowHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.windowTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.windowTitle {
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  color: #3f3f3f;
+  text-shadow: 1px 1px 0px #ffffff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.newBookBtn {
+  background-color: #2e7d32;
+  border: 2px solid #000000;
+  box-shadow:
+    inset 2px 2px 0px #81c784,
+    inset -2px -2px 0px #1b5e20;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  text-shadow: 1px 1px 0px #000000;
+  padding: 6px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.06s ease;
+}
+
+.newBookBtn:hover {
+  background-color: #388e3c;
+  color: #ffffa0;
+  transform: translateY(-1px);
+}
+
+.backBtn {
+  background-color: #747474;
+  border: 2px solid #000000;
+  box-shadow:
+    inset 2px 2px 0px #b0b0b0,
+    inset -2px -2px 0px #3b3b3b;
+  color: #e0e0e0;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  text-shadow: 1px 1px 0px #000000;
+  padding: 6px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.backBtn:hover {
+  background-color: #8c8c8c;
+  color: #ffffa0;
+}
+
+/* Toolbar Area */
+.toolbarArea {
+  margin-bottom: 8px;
+}
+
+/* Main Body: Shelf Sidebar + Wooden Bookshelf Grid */
+.windowBody {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .bookshelfContainer {
+    padding: 6px;
+  }
+  .bookshelfWindow {
+    height: auto;
+    max-height: 100%;
+    min-height: 0;
+    padding: 8px;
+  }
+  .windowBody {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* Rename Modal Prompt */
+.renameModal {
+  position: fixed;
+  inset: 0;
+  z-index: 350;
+  top: var(--app-top);
+  height: var(--app-height);
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.renameBox {
+  width: 100%;
+  max-width: 380px;
+  background-color: #c6c6c6;
+  border: 3px solid #000000;
+  box-shadow:
+    inset 3px 3px 0px #ffffff,
+    inset -3px -3px 0px #555555,
+    0 16px 40px rgba(0, 0, 0, 0.9);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.renameTitle {
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  color: #3f3f3f;
+  text-shadow: 1px 1px 0px #ffffff;
+  margin: 0;
+}
+
+.renameInput {
+  width: 100%;
+  height: 36px;
+  background-color: #000000;
+  border: 2px solid #555555;
+  box-shadow:
+    inset 1px 1px 0px #222222,
+    inset -1px -1px 0px #333333;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  padding: 0 10px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.renameInput:focus {
+  border-color: #ffffff;
+}
+
+.renameActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .bookshelfContainer { justify-content: flex-start; padding: calc(8px + var(--safe-top)) calc(6px + var(--safe-right)) calc(8px + var(--safe-bottom)) calc(6px + var(--safe-left)); }
+  .bookshelfWindow { animation: none; padding: 10px 8px; }
+  .windowBody { flex: 0 1 auto; }
+  .windowHeader { gap: 6px; }
+  .windowTitle { font-size: 19px; }
+  .headerActions { margin-left: auto; gap: 6px; }
+  .newBookBtn, .backBtn { min-height: 44px; padding: 6px 10px; }
+  .toolbarArea { flex-shrink: 0; margin-bottom: 4px; }
+  .renameBox { max-height: calc(var(--app-height) - 32px); overflow-y: auto; }
+}

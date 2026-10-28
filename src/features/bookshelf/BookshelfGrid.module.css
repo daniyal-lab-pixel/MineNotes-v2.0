@@ -1,0 +1,182 @@
+/* Bookshelf Grid & Wooden Shelves */
+
+.bookshelfCanvas {
+  flex: 1;
+  position: relative;
+  background-color: #5c3e21;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.42)),
+    url('/textures/oak_planks.png');
+  background-size: 64px 64px;
+  background-repeat: repeat;
+  image-rendering: pixelated;
+  border: 3px solid #000000;
+  box-shadow:
+    inset 3px 3px 0px #241407,
+    inset -3px -3px 0px #7d5730,
+    inset 0 0 16px rgba(0, 0, 0, 0.7);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 12px;
+  min-height: 0;
+  min-width: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #4a2e16 #241407;
+}
+
+.bookshelfCanvas::-webkit-scrollbar {
+  width: 8px;
+}
+
+.bookshelfCanvas::-webkit-scrollbar-track {
+  background: #241407;
+}
+
+.bookshelfCanvas::-webkit-scrollbar-thumb {
+  background: #6a4422;
+  border: 1px solid #150b04;
+}
+
+/* Shelf Row in Shelf View Mode */
+.shelfRowContainer {
+  position: relative;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+}
+
+/* Wooden Shelf Plank Underneath Books */
+.woodenPlank {
+  position: absolute;
+  bottom: 0;
+  left: -8px;
+  right: -8px;
+  height: 14px;
+  background-color: #634324;
+  background-image: url('/textures/oak_planks.png');
+  background-size: 48px 48px;
+  image-rendering: pixelated;
+  border-top: 3px solid #9c7142; /* Highlight edge */
+  border-bottom: 3px solid #1a0f06; /* Shadow edge */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shelfBooksRow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 14px;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 8px;
+}
+
+/* Grid / Inventory Slot View Mode */
+.inventorySlotGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 10px;
+  padding: 8px;
+}
+
+@media (max-width: 480px) {
+  .inventorySlotGrid {
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: 8px;
+  }
+  .shelfBooksRow {
+    gap: 8px 10px;
+    padding: 0 4px;
+  }
+}
+
+/* Empty Bookshelf State */
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  padding: 32px 16px;
+  position: relative;
+  text-align: center;
+  font-family: var(--font-pixel);
+}
+
+.cobwebTopLeft {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.cobwebTopRight {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  opacity: 0.75;
+  pointer-events: none;
+  transform: scaleX(-1);
+}
+
+.emptyBookGraphic {
+  margin-bottom: 14px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+}
+
+.emptyTitle {
+  font-size: 18px;
+  color: #ffffff;
+  text-shadow: 2px 2px 0px #000000;
+  margin: 0 0 6px 0;
+}
+
+.emptySubtitle {
+  font-size: 13px;
+  color: #c6b29d;
+  text-shadow: 1px 1px 0px #000000;
+  margin: 0 0 18px 0;
+  max-width: 320px;
+}
+
+.createFirstBtn {
+  background-color: #2e7d32;
+  border: 2px solid #000000;
+  box-shadow:
+    inset 2px 2px 0px #81c784,
+    inset -2px -2px 0px #1b5e20,
+    0 4px 10px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  text-shadow: 1px 1px 0px #000000;
+  padding: 10px 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.08s ease;
+}
+
+.createFirstBtn:hover {
+  background-color: #388e3c;
+  color: #ffffa0;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .bookshelfCanvas { flex: 0 1 auto; min-height: 180px; padding: 12px 8px; }
+  .shelfBooksRow, .inventorySlotGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 8px; padding: 0; }
+  .shelfRowContainer { margin-bottom: 16px; padding-bottom: 14px; }
+  .shelfRowContainer:last-child { margin-bottom: 0; }
+  .emptyContainer { min-height: 220px; padding: 20px 8px; }
+  .emptyTitle { font-size: 16px; }
+  .emptySubtitle { overflow-wrap: anywhere; }
+}
+@media (min-width: 390px) and (max-width: 768px) {
+  .shelfBooksRow, .inventorySlotGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

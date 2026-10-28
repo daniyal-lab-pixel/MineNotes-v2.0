@@ -1,0 +1,337 @@
+/* Review & Clean Test Notes Modal */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.12s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalWindow {
+  width: 100%;
+  max-width: 580px;
+  max-height: 85vh;
+  background-color: #c6c6c6;
+  border: 3px solid #000000;
+  box-shadow:
+    inset 3px 3px 0px #ffffff,
+    inset -3px -3px 0px #555555,
+    0 16px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  animation: modalPop 0.12s ease-out;
+  user-select: none;
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.97);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  border-bottom: 2px solid #555555;
+  padding-bottom: 6px;
+}
+
+.modalTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: #3f3f3f;
+  text-shadow: 1px 1px 0px #ffffff;
+  margin: 0;
+}
+
+.closeBtn {
+  background-color: #8b8b8b;
+  border: 2px solid #373737;
+  box-shadow:
+    inset 1px 1px 0px #ffffff,
+    inset -1px -1px 0px #000000;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  background-color: #b02e26;
+  border-color: #ffffff;
+}
+
+.infoBanner {
+  background-color: #373737;
+  border: 1px solid #222222;
+  color: #c6c6c6;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  line-height: 1.4;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+/* Category Filter Tabs */
+.filterTabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.filterTabBtn {
+  background-color: #747474;
+  border: 2px solid #373737;
+  box-shadow:
+    inset 1px 1px 0px #a0a0a0,
+    inset -1px -1px 0px #222222;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.filterTabBtn:hover {
+  background-color: #8b8b8b;
+  color: #ffffa0;
+}
+
+.filterTabBtnActive {
+  background-color: #37535b;
+  border-color: #55ffff;
+  color: #ffffa0;
+}
+
+/* Selection Controls Bar */
+.selectionBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding: 2px 4px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #3f3f3f;
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
+.toggleSelectBtn {
+  background: none;
+  border: 1px solid #555555;
+  color: #222222;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.toggleSelectBtn:hover {
+  background-color: #d6d6d6;
+}
+
+/* Scrollable Note Rows */
+.noteList {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 320px;
+  background-color: #8b8b8b;
+  border: 2px solid #373737;
+  box-shadow:
+    inset 2px 2px 0px #373737,
+    inset -2px -2px 0px #ffffff;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #555555 #8b8b8b;
+}
+
+.noteRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #6d6d6d;
+  border: 1px solid #444444;
+  padding: 6px 8px;
+  cursor: pointer;
+  transition: background-color 0.05s ease;
+}
+
+.noteRow:hover {
+  background-color: #7b7b7b;
+}
+
+.noteRowSelected {
+  background-color: #516453;
+  border-color: #81c784;
+}
+
+.pixelCheckbox {
+  width: 16px;
+  height: 16px;
+  background-color: #000000;
+  border: 2px solid #555555;
+  box-shadow:
+    inset 1px 1px 0px #222222,
+    inset -1px -1px 0px #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #55ff55;
+  font-size: 11px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.noteRowSelected .pixelCheckbox {
+  border-color: #55ff55;
+}
+
+.noteRowDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.noteRowHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.noteRowTitle {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badgeFixture {
+  background-color: #00838f;
+  color: #e0f7fa;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.badgeEmpty {
+  background-color: #e65100;
+  color: #fff3e0;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.noteRowMeta {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #cccccc;
+  text-shadow: 1px 1px 0px #000000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.noteRowSnippet {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #aaaaaa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Empty State */
+.emptyList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  color: #dfdfdf;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Footer Actions */
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  gap: 12px;
+}
+
+.selectedSummary {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: #3f3f3f;
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
+.deleteBatchBtn {
+  background-color: #b02e26;
+  border: 2px solid #000000;
+  box-shadow:
+    inset 2px 2px 0px #e57373,
+    inset -2px -2px 0px #5f1510;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  text-shadow: 1px 1px 0px #000000;
+  padding: 6px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.deleteBatchBtn:hover:not(:disabled) {
+  background-color: #c62828;
+  color: #ffffa0;
+}
+
+.deleteBatchBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

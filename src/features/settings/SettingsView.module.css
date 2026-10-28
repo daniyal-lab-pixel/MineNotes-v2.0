@@ -1,0 +1,163 @@
+/* Minecraft Settings Layout */
+
+.settingsContainer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: var(--app-height);
+  top: var(--app-top);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(24px + var(--safe-top)) calc(16px + var(--safe-right)) calc(24px + var(--safe-bottom)) calc(16px + var(--safe-left));
+  background-color: #1a1a1a;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url('/textures/voxel_forest_panorama.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.title {
+  font-family: var(--font-pixel);
+  font-size: 28px;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-shadow: 2px 2px 0px #000000;
+}
+
+.settingsPanel {
+  flex: 1;
+  width: 100%;
+  max-width: 600px;
+  background-color: rgba(0, 0, 0, 0.45);
+  border: 4px solid #000000;
+  box-shadow: 
+    inset 2px 2px 0px #373737,
+    inset -2px -2px 0px #1a1a1a;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.settingRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rowLabel {
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  color: #dddddd;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.inputField {
+  height: 38px;
+  background-color: #000000;
+  border: 2px solid #555555;
+  box-shadow: 
+    inset 2px 2px 0px #222222,
+    inset -2px -2px 0px #333333;
+  padding: 0 10px;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  outline: none;
+}
+
+.inputField:focus {
+  border-color: #ffffff;
+}
+
+.optionsGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.actionsGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.creditsBox {
+  margin-top: 10px;
+  padding: 12px;
+  border: 2px solid #3a3a3a;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  font-family: var(--font-pixel);
+}
+
+.creditsTitle {
+  font-size: 16px;
+  color: #ffffa0;
+  margin-bottom: 4px;
+  text-shadow: 2px 2px 0px #000000;
+}
+
+.creditsDesc {
+  font-size: 13px;
+  color: #a0a0a0;
+}
+
+.footerActions {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #000000;
+  border: 2px solid #555555;
+  box-shadow: 
+    inset 2px 2px 0px #222222,
+    inset -2px -2px 0px #333333;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.sliderLabel {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  color: #ffff55;
+  min-width: 140px;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.volumeSlider {
+  flex: 1;
+  accent-color: #80c71f;
+  cursor: pointer;
+  height: 8px;
+}
+
+
+.settingsPanel { min-height: 0; }
+@media (max-width: 767px) {
+  .settingsContainer { padding: calc(12px + var(--safe-top)) calc(10px + var(--safe-right)) calc(12px + var(--safe-bottom)) calc(10px + var(--safe-left)); }
+  .settingsPanel { padding: 12px; }
+  .title { font-size: 24px; margin-bottom: 10px; }
+  .sliderContainer { flex-wrap: wrap; gap: 8px; }
+  .sliderLabel { min-width: 0; }
+  .volumeSlider { min-width: 80px; min-height: 32px; }
+  .footerActions { flex-shrink: 0; }
+  .actionsGroup { grid-template-columns: minmax(0, 1fr); }
+}

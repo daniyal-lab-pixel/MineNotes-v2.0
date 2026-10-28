@@ -1,0 +1,241 @@
+/* Shelf Management Modal */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  top: var(--app-top);
+  height: var(--app-height);
+  z-index: 300;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.12s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalWindow {
+  width: 100%;
+  max-width: 440px;
+  background-color: #c6c6c6;
+  border: 3px solid #000000;
+  box-shadow:
+    inset 3px 3px 0px #ffffff,
+    inset -3px -3px 0px #555555,
+    0 16px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  animation: modalPop 0.12s ease-out;
+  user-select: none;
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #555555;
+  padding-bottom: 8px;
+}
+
+.modalTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: #3f3f3f;
+  text-shadow: 1px 1px 0px #ffffff;
+  margin: 0;
+}
+
+.closeBtn {
+  background-color: #8b8b8b;
+  border: 2px solid #373737;
+  box-shadow:
+    inset 1px 1px 0px #ffffff,
+    inset -1px -1px 0px #000000;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  background-color: #b02e26;
+  border-color: #ffffff;
+}
+
+/* Shelf List in Modal */
+.shelfList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 280px;
+  overflow-y: auto;
+  background-color: #8b8b8b;
+  border: 2px solid #373737;
+  box-shadow:
+    inset 2px 2px 0px #373737,
+    inset -2px -2px 0px #ffffff;
+  padding: 6px;
+}
+
+.shelfRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  background-color: #747474;
+  border: 1px solid #4a4a4a;
+}
+
+.shelfRowFixed {
+  background-color: #636363;
+  opacity: 0.9;
+}
+
+.shelfInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.shelfCount {
+  color: #ffffa0;
+  font-size: 11px;
+}
+
+.shelfActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.actionIconBtn {
+  background-color: #8b8b8b;
+  border: 1px solid #373737;
+  box-shadow:
+    inset 1px 1px 0px #ffffff,
+    inset -1px -1px 0px #000000;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionIconBtn:hover {
+  background-color: #a0a0a0;
+  border-color: #ffffff;
+}
+
+.actionIconBtnDanger {
+  color: #ff9999;
+}
+
+.actionIconBtnDanger:hover {
+  background-color: #b02e26;
+  color: #ffffff;
+}
+
+/* Create / Rename Dialog form */
+.formBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.inputField {
+  width: 100%;
+  height: 36px;
+  background-color: #000000;
+  border: 2px solid #555555;
+  box-shadow:
+    inset 1px 1px 0px #222222,
+    inset -1px -1px 0px #333333;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  padding: 0 10px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.inputField:focus {
+  border-color: #ffffff;
+}
+
+.footerActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  gap: 10px;
+}
+
+.createBtn {
+  width: 100%;
+  background-color: #2e7d32;
+  border: 2px solid #000000;
+  box-shadow:
+    inset 2px 2px 0px #81c784,
+    inset -2px -2px 0px #1b5e20;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  text-shadow: 1px 1px 0px #000000;
+  padding: 8px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.createBtn:hover {
+  background-color: #388e3c;
+  color: #ffffa0;
+}
+
+.modalWindow { max-height: calc(var(--app-height) - var(--safe-top) - var(--safe-bottom) - 32px); overflow-y: auto; overscroll-behavior: contain; }
+
+@media (max-width: 767px) { .closeBtn { width: 44px; height: 44px; flex-shrink: 0; } .modalHeader { gap: 4px; } }
+
+@media (max-width: 767px) { .buttonRow { flex-wrap: wrap; } }
+
+@media (max-width: 767px) {
+  .shelfRow { gap: 6px; flex-wrap: wrap; }
+  .shelfInfo { min-width: 0; overflow-wrap: anywhere; }
+  .actionIconBtn { width: 44px; height: 44px; }
+  .createBtn { min-height: 44px; }
+}

@@ -1,0 +1,146 @@
+/* Book Cover Icon Styles */
+
+.coverContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.bookSvg {
+  display: block;
+  shape-rendering: crispEdges;
+  overflow: visible;
+  transition: transform 0.1s ease;
+}
+
+/* Enchanted Book Shimmer and Sparkles */
+.enchantedContainer {
+  filter: drop-shadow(0 0 5px rgba(199, 78, 189, 0.75));
+  animation: enchantedPulse 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes enchantedPulse {
+  0% {
+    filter: drop-shadow(0 0 3px rgba(137, 50, 184, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(230, 128, 255, 0.95)) drop-shadow(0 0 12px rgba(199, 78, 189, 0.6));
+  }
+  100% {
+    filter: drop-shadow(0 0 4px rgba(137, 50, 184, 0.7));
+  }
+}
+
+.enchantedSheen {
+  mix-blend-mode: color-dodge;
+  animation: shimmerWave 3s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes shimmerWave {
+  0% {
+    opacity: 0.35;
+    transform: translateY(-4px) rotate(-15deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    opacity: 0.35;
+    transform: translateY(4px) rotate(15deg);
+  }
+}
+
+/* Sparkle Star Particles */
+.sparkleParticle {
+  position: absolute;
+  pointer-events: none;
+  animation: floatSparkle 2.4s ease-in-out infinite;
+}
+
+.sparkle1 {
+  top: -6px;
+  right: -4px;
+  animation-delay: 0s;
+}
+
+.sparkle2 {
+  bottom: 0px;
+  left: -6px;
+  animation-delay: 0.8s;
+}
+
+.sparkle3 {
+  top: 6px;
+  left: -8px;
+  animation-delay: 1.4s;
+}
+
+.sparkle4 {
+  bottom: -6px;
+  right: -2px;
+  animation-delay: 2s;
+}
+
+@keyframes floatSparkle {
+  0% {
+    transform: scale(0.6) translateY(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.1) translateY(-3px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.6) translateY(-6px);
+    opacity: 0;
+  }
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+  .enchantedContainer {
+    animation: none;
+    filter: drop-shadow(0 0 4px rgba(199, 78, 189, 0.8));
+  }
+  .enchantedSheen {
+    animation: none;
+    opacity: 0.7;
+  }
+  .sparkleParticle {
+    animation: none;
+    opacity: 0.8;
+  }
+}
+
+.reducedMotion .enchantedContainer {
+  animation: none;
+  filter: drop-shadow(0 0 4px rgba(199, 78, 189, 0.8));
+}
+.reducedMotion .enchantedSheen {
+  animation: none;
+  opacity: 0.7;
+}
+.reducedMotion .sparkleParticle {
+  animation: none;
+  opacity: 0.8;
+}
+
+/* Favorite star badge */
+.favoriteBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(1px 1px 0px #000000);
+  pointer-events: none;
+  z-index: 2;
+}

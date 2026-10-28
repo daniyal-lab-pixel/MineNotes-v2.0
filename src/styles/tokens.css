@@ -1,0 +1,82 @@
+:root {
+  --app-height: 100vh;
+  --app-top: 0px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --touch-target: 44px;
+  /* Fonts */
+  --font-pixel: 'Minecraft', 'MinecraftPixel', monospace;
+  --font-retro: 'MinecraftRetro', monospace;
+  --font-vt: 'MinecraftVT', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-typewriter: 'Courier New', Courier, monospace;
+
+  /* Minecraft UI Button Colors */
+  --mc-btn-bg: #747474;
+  --mc-btn-hover-bg: #8c8c8c;
+  --mc-btn-active-bg: #525252;
+  --mc-btn-disabled-bg: #5a5a5a;
+  --mc-btn-highlight: #b0b0b0;
+  --mc-btn-shadow: #3b3b3b;
+  --mc-btn-border-dark: #000000;
+  --mc-btn-text: #e0e0e0;
+  --mc-btn-text-hover: #ffffa0;
+  --mc-btn-text-disabled: #a0a0a0;
+  --mc-btn-text-shadow: #202020;
+
+  /* Minecraft Book Cover & Spine */
+  --mc-book-cover-outer: #2d180b;
+  --mc-book-cover-rim: #3d210f;
+  --mc-book-cover-leather: #5c3217;
+  --mc-book-cover-highlight: #77411e;
+  --mc-book-spine: #231206;
+  --mc-book-stitch: #a8282b;
+  --mc-book-gold: #cba239;
+  --mc-book-gold-shadow: #7e5c14;
+
+  /* Parchment Pages */
+  --mc-page-bg: #f9f5e8;
+  --mc-page-border: #ebdcc0;
+  --mc-page-shadow: #dfcdad;
+  --mc-page-fold: #cbbaa0;
+  --mc-page-text: #1d1712;
+  --mc-page-subtext: #645543;
+  --mc-page-filigree: #c4b38d;
+
+  /* Minecraft Chat & Dye Colors */
+  --mc-dye-black: #1d1d21;
+  --mc-dye-red: #b02e26;
+  --mc-dye-green: #5e7c16;
+  --mc-dye-brown: #835432;
+  --mc-dye-blue: #3c44aa;
+  --mc-dye-purple: #8932b8;
+  --mc-dye-cyan: #169c9c;
+  --mc-dye-light-gray: #9d9d97;
+  --mc-dye-gray: #474f52;
+  --mc-dye-pink: #f38baa;
+  --mc-dye-lime: #80c71f;
+  --mc-dye-yellow: #fed83d;
+  --mc-dye-light-blue: #3ab3da;
+  --mc-dye-magenta: #c74ebd;
+  --mc-dye-orange: #f9801d;
+  --mc-dye-white: #f9fffe;
+
+  /* Dark Loading Background */
+  --mc-loading-bg: #191919;
+  --mc-loading-bar-border: #ffffff;
+  --mc-loading-bar-fill: #ffffff;
+  --mc-loading-bar-bg: #000000;
+
+  /* Dialog and Panels */
+  --mc-panel-bg: #c6c6c6;
+  --mc-panel-border-light: #ffffff;
+  --mc-panel-border-dark: #555555;
+  --mc-panel-inner: #8b8b8b;
+  --mc-slot-bg: #8b8b8b;
+  --mc-slot-border-dark: #373737;
+  --mc-slot-border-light: #ffffff;
+}
+
+@supports (height: 100dvh) { :root { --app-height: 100dvh; } }

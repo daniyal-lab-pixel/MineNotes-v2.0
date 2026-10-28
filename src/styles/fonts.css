@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Minecraft';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/fonts/Minecraft.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Minecraft';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url('/fonts/Minecraft-Bold.otf') format('opentype');
+}
+
+/* Alias MinecraftPixel to the authentic Minecraft font for backward compatibility */
+@font-face {
+  font-family: 'MinecraftPixel';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/fonts/Minecraft.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'MinecraftPixel';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url('/fonts/Minecraft-Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'MinecraftRetro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MinecraftVT';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/VT323-Regular.ttf') format('truetype');
+}
+
+/* Global pixel font crisp rendering rules */
+html, body, button, input, select, textarea {
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+  text-rendering: optimizeSpeed;
+}

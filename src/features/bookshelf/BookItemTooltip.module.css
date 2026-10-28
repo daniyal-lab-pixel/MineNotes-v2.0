@@ -1,0 +1,96 @@
+/* Minecraft Authentic Tooltip Frame (Floating Portal) */
+
+.portalTooltip {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  user-select: none;
+  animation: tooltipFadeIn 0.1s ease-out;
+  white-space: nowrap;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tooltipFrame {
+  background-color: #100010;
+  border: 2px solid #28005b;
+  box-shadow:
+    inset 1px 1px 0px #5000af,
+    inset -1px -1px 0px #5000af,
+    0 8px 24px rgba(0, 0, 0, 0.95);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-pixel);
+  min-width: 170px;
+  max-width: 290px;
+  box-sizing: border-box;
+}
+
+.tooltipIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tooltipContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+  min-width: 0;
+}
+
+.tooltipTitle {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 0px #000000;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tooltipCoverType {
+  font-size: 12px;
+  color: #c74ebd;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.tooltipMeta {
+  font-size: 11px;
+  color: #a0a0a0;
+  text-shadow: 1px 1px 0px #000000;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tooltipFavorite {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #fed83d;
+  font-size: 11px;
+  text-shadow: 1px 1px 0px #000000;
+  margin-top: 2px;
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+  .portalTooltip {
+    animation: none;
+  }
+}

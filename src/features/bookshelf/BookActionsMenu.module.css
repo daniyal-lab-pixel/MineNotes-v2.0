@@ -1,0 +1,163 @@
+/* Minecraft Context / Actions Menu */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.menuWindow {
+  position: fixed;
+  z-index: 201;
+  background-color: #c6c6c6;
+  border: 3px solid #000000;
+  box-shadow:
+    inset 2px 2px 0px #ffffff,
+    inset -2px -2px 0px #555555,
+    0 10px 30px rgba(0, 0, 0, 0.85);
+  min-width: 210px;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  animation: menuPop 0.1s ease-out;
+  user-select: none;
+}
+
+@keyframes menuPop {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.menuHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 8px;
+  border-bottom: 2px solid #555555;
+  margin-bottom: 4px;
+}
+
+.menuTitle {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  font-weight: bold;
+  color: #333333;
+  text-shadow: 1px 1px 0px #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background-color: #8b8b8b;
+  border: 2px solid #373737;
+  box-shadow:
+    inset 1px 1px 0px #aeaeae,
+    inset -1px -1px 0px #222222;
+  color: #e0e0e0;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  text-shadow: 1px 1px 0px #000000;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.05s ease;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background-color: #a0a0a0;
+  border-color: #ffffff;
+  color: #ffffa0;
+  outline: none;
+}
+
+.menuItemOpen {
+  background-color: #2e7d32;
+  border-color: #1b5e20;
+  color: #ffffff;
+}
+
+.menuItemOpen:hover,
+.menuItemOpen:focus-visible {
+  background-color: #388e3c;
+  color: #ffff80;
+}
+
+.menuItemDanger {
+  color: #ff9999;
+}
+
+.menuItemDanger:hover,
+.menuItemDanger:focus-visible {
+  background-color: #8a2a2a;
+  color: #ffffff;
+}
+
+.chevron {
+  margin-left: auto;
+  font-size: 11px;
+}
+
+/* Shelf Submenu */
+.shelfSubmenu {
+  margin-top: 4px;
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background-color: #747474;
+  padding: 4px;
+  border: 2px solid #373737;
+}
+
+.shelfSubItem {
+  padding: 4px 6px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: #ffffff;
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shelfSubItem:hover,
+.shelfSubItem:focus-visible {
+  background-color: #8b8b8b;
+  border-color: #ffffff;
+  outline: none;
+}
+
+.shelfSubItemActive {
+  color: #ffffa0;
+  font-weight: bold;
+}
+
+.menuWindow { max-height: calc(var(--app-height) - 32px); overflow-y: auto; }
+@media (max-width: 768px) {
+  .menuWindow { top: auto !important; bottom: calc(12px + var(--safe-bottom)); left: 12px !important; right: 12px; width: auto; min-width: 0; max-width: none; transform: none !important; }
+  .menuItem, .shelfSubItem { min-height: 44px; }
+}

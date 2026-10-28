@@ -1,0 +1,120 @@
+/* Authentic Minecraft Java Edition Stone Button */
+
+.mcButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  line-height: 1;
+  color: #e0e0e0;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  padding: 0 14px;
+  height: 36px;
+  min-width: 120px;
+  box-sizing: border-box;
+
+  /* Authentic Minecraft widgets.png 9-slice stone button */
+  border-style: solid;
+  border-width: 3px;
+  border-image: url('/textures/mc_button.png') 3 3 3 3 fill / 3px repeat;
+  image-rendering: pixelated;
+  transition: none;
+}
+
+.mcButtonContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-shadow: 2px 2px 0px #3f3f3f;
+  letter-spacing: 0px;
+}
+
+/* Hover state */
+.mcButton:hover:not(:disabled) {
+  color: #ffffa0;
+  border-image: url('/textures/mc_button_hover.png') 3 3 3 3 fill / 3px repeat;
+}
+
+.mcButton:hover:not(:disabled) .mcButtonContent {
+  text-shadow: 2px 2px 0px #2b2b00;
+}
+
+/* Active / Pressed state */
+.mcButton:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* Focus state */
+.mcButton:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 1px;
+}
+
+/* Disabled state */
+.mcButton:disabled {
+  cursor: not-allowed;
+  color: #a0a0a0;
+  border-image: url('/textures/mc_button_disabled.png') 3 3 3 3 fill / 3px repeat;
+}
+
+.mcButton:disabled .mcButtonContent {
+  text-shadow: 2px 2px 0px #1f1f1f;
+}
+
+/* Size Variants */
+.sizeLarge {
+  height: 42px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.sizeMedium {
+  height: 34px;
+  font-size: 14px;
+  min-width: 130px;
+  padding: 0 12px;
+}
+
+.sizeSmall {
+  height: 28px;
+  font-size: 13px;
+  padding: 0 8px;
+  min-width: 70px;
+}
+
+.sizeIcon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0;
+}
+
+/* Style Variants */
+.variantDanger {
+  background-color: #8c3232;
+  box-shadow: 
+    inset 2px 2px 0px 0px rgba(255, 150, 150, 0.4),
+    inset -2px -2px 0px 0px rgba(0, 0, 0, 0.6);
+}
+
+.variantWood {
+  background-color: #8e7042;
+  background-image: url('/textures/oak_planks.png');
+  box-shadow: 
+    inset 2px 2px 0px 0px rgba(255, 230, 180, 0.4),
+    inset -2px -2px 0px 0px rgba(0, 0, 0, 0.55);
+}
+
+@media (max-width: 767px), (pointer: coarse) {
+  .mcButton { min-height: 44px; min-width: 0; max-width: 100%; }
+  .sizeLarge { height: 48px; }
+  .sizeMedium { min-width: 0; width: 100%; }
+  .mcButtonContent { overflow-wrap: anywhere; line-height: 1.2; }
+}

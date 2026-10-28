@@ -1,0 +1,216 @@
+/* Minecraft GUI Inventory-Style Formatting Utility Panel */
+
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  top: var(--app-top);
+  height: var(--app-height);
+  background-color: rgba(0, 0, 0, 0.40);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  user-select: none;
+}
+
+.drawerPanel {
+  position: relative;
+  width: 90%;
+  max-width: 420px;
+  background-color: #c6c6c6;
+  border: 2px solid #000000;
+  box-shadow:
+    inset 2px 2px 0px #ffffff,
+    inset -2px -2px 0px #555555;
+  padding: 8px 10px 10px 10px;
+  font-family: var(--font-pixel);
+  box-sizing: border-box;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.headerTitle {
+  font-size: 14px;
+  color: #404040;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0px;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: #555555;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.closeBtn:hover {
+  color: #000000;
+}
+
+.sectionTitle {
+  font-size: 12px;
+  color: #404040;
+  margin: 8px 0 4px 0;
+  letter-spacing: 0px;
+}
+
+/* Tool Slots Row */
+.toolsRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.invSlot {
+  width: 32px;
+  height: 32px;
+  background-color: #8b8b8b;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  color: #ffffff;
+  position: relative;
+}
+
+.invSlot:hover:not(:disabled) {
+  background-color: #a0a0a0;
+}
+
+.invSlot:active:not(:disabled) {
+  background-color: #707070;
+}
+
+.invSlotActive {
+  background-color: #555555;
+  border-top: 2px solid #222222;
+  border-left: 2px solid #222222;
+  border-right: 2px solid #888888;
+  border-bottom: 2px solid #888888;
+}
+
+.invSlot:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Font Selector */
+.fontSelect {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  background-color: #8b8b8b;
+  color: #ffffff;
+  height: 32px;
+  padding: 0 6px;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  outline: none;
+  cursor: pointer;
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Dye Hotbar Grid (16 Minecraft Dyes matching Reference 1) */
+.dyeGrid {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 2px;
+  background-color: #8b8b8b;
+  padding: 4px;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .dyeGrid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3px;
+  }
+}
+
+.dyeSlot {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid #373737;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.dyeSlot:hover {
+  outline: 2px solid #ffffff;
+  z-index: 2;
+}
+
+.dyeSlotActive {
+  outline: 2px solid #fed83d;
+  z-index: 2;
+}
+
+/* Minecraft Item Tooltip */
+.tooltipText {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #100010;
+  border: 2px solid #280054;
+  color: #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 50;
+  display: none;
+}
+
+.dyeSlot:hover .tooltipText {
+  display: block;
+}
+
+/* Shortcuts Footer hint */
+.footerHint {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #555555;
+  text-align: center;
+}
+
+.drawerPanel { max-height: calc(var(--app-height) - var(--safe-top) - var(--safe-bottom) - 32px); overflow-y: auto; overscroll-behavior: contain; }
+
+@media (max-width: 767px), (pointer: coarse) {
+  .drawerPanel { width: calc(100% - 24px); padding: 12px; }
+  .invSlot, .closeBtn { min-width: 44px; min-height: 44px; }
+  .fontSelect { min-height: 44px; }
+  .dyeGrid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+  .dyeSlot { min-height: 32px; }
+  .toolsRow { gap: 6px; }
+}

@@ -1,0 +1,105 @@
+@import './fonts.css';
+@import './tokens.css';
+@import './textures.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-pixel);
+  user-select: none;
+  -webkit-user-select: none;
+  background-color: var(--mc-loading-bg);
+  color: var(--mc-btn-text);
+}
+
+/* Allow text selection inside editor */
+.allow-select, .allow-select * {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+/* Pixel text styling */
+.pixel-text {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.5px;
+  text-shadow: 2px 2px 0px var(--mc-btn-text-shadow);
+}
+
+.pixel-text-subtle {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.6);
+}
+
+/* Custom scrollbars for scrollable inventory/notes list */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #737373;
+  border-top: 2px solid #a8a8a8;
+  border-left: 2px solid #a8a8a8;
+  border-right: 2px solid #373737;
+  border-bottom: 2px solid #373737;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888888;
+}
+
+/* Focus outline for accessibility while maintaining pixel aesthetic */
+:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 1px;
+}
+
+/* Input reset for Minecraft style */
+input, textarea, select {
+  font-family: var(--font-pixel);
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-pixel);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Form text remains selectable even inside inventory panels. */
+input, textarea, [contenteditable="true"], [contenteditable="true"] * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+button, a, select { touch-action: manipulation; }
+.appContent { width: 100%; height: 100%; }
+@media (pointer: coarse), (max-width: 767px) {
+  input:not([type="range"]):not([type="checkbox"]), textarea, select {
+    font-size: 16px !important;
+    min-width: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+#minenotes-page-measurement-sandbox p { margin: 0 0 4px; }
+#minenotes-page-measurement-sandbox p:last-child { margin-bottom: 0; }
+
+.screenLoading { display: grid; place-items: center; height: var(--app-height); color: #ffff55; }

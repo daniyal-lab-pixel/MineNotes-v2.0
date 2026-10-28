@@ -1,0 +1,130 @@
+/* Minecraft 3D Beveled Logo Styling */
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.bookIconWrapper {
+  margin-bottom: 8px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.6));
+  animation: floatBook 4s ease-in-out infinite;
+}
+
+@keyframes floatBook {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.titleWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3D Stone Blocky Lettering mimicking Minecraft title screen */
+.logoTitle {
+  font-family: var(--font-pixel);
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #d6d6d6;
+  background: linear-gradient(180deg, #ffffff 0%, #d8d8d8 35%, #a8a8a8 70%, #757575 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  margin: 0;
+  filter: drop-shadow(0 2px 0 #3a3a3a)
+          drop-shadow(0 4px 0 #2a2a2a)
+          drop-shadow(0 7px 0 #1c1c1c)
+          drop-shadow(0 10px 0 #0d0d0d)
+          drop-shadow(0 13px 0 #000000)
+          drop-shadow(0 16px 12px rgba(0, 0, 0, 0.85));
+}
+
+.titleLarge {
+  font-size: 64px;
+}
+
+.titleMedium {
+  font-size: 44px;
+}
+
+.titleSmall {
+  font-size: 28px;
+}
+
+/* Playful Minecraft-Style Yellow Angled Splash Tag */
+.splashTag {
+  position: absolute;
+  right: -26px;
+  bottom: -6px;
+  transform: rotate(-19deg);
+  font-family: var(--font-pixel);
+  font-weight: 700;
+  color: #ffff55;
+  text-shadow: 2px 2px 0px #3f3f00, 3px 3px 0px rgba(0, 0, 0, 0.7);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 20;
+  transform-origin: center center;
+  animation: splashPulse 1.8s ease-in-out infinite alternate;
+}
+
+.splashLarge {
+  font-size: 17px;
+  right: -28px;
+  bottom: -6px;
+}
+
+.splashMedium {
+  font-size: 13px;
+  right: -18px;
+  bottom: -4px;
+}
+
+.splashSmall {
+  font-size: 11px;
+  right: -12px;
+  bottom: -2px;
+}
+
+@keyframes splashPulse {
+  0% {
+    transform: rotate(-19deg) scale(0.95);
+  }
+  100% {
+    transform: rotate(-19deg) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bookIconWrapper {
+    animation: none;
+  }
+  .splashTag {
+    animation: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .titleLarge {
+    font-size: 40px;
+    letter-spacing: 2px;
+  }
+  .splashLarge {
+    font-size: 13px;
+    right: -12px;
+    bottom: -4px;
+  }
+}

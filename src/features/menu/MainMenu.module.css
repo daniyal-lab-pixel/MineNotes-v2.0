@@ -1,0 +1,160 @@
+/* Minecraft Main Menu Layout - Integrated with Official Image B Asset */
+
+.menuContainer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: var(--app-height);
+  top: var(--app-top);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 18px 16px;
+  overflow: hidden;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* Fullscreen Authentic Voxel Jungle Biome from Image B */
+.panoramaBackdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/textures/main_menu_backdrop.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Subtle atmospheric darkening to make real buttons stand out crisp */
+.atmosphereOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.28) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.topSection {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: min(34vh, 220px);
+  width: 100%;
+}
+
+.centerSection {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.bottomSection {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 960px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.footerLeft {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: #d0d0d0;
+  text-shadow: 2px 2px 0px #000000;
+  letter-spacing: 0.5px;
+}
+
+.footerCenter {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 2px 2px 0px #000000;
+  letter-spacing: 0.5px;
+}
+
+.footerRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconToggleBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-shadow: 2px 2px 0px #000000;
+  transition: transform 0.1s ease;
+}
+
+.iconToggleBtn:hover {
+  transform: scale(1.18);
+  color: #ffffff;
+}
+
+@media (max-height: 640px) {
+  .menuContainer {
+    padding: 10px 12px;
+  }
+  .topSection {
+    height: min(30vh, 170px);
+  }
+  .centerSection {
+    gap: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .centerSection {
+    max-width: 290px;
+  }
+  .footerCenter {
+    display: none;
+  }
+}
+
+.mobileBrand { display: none; }
+@media (max-width: 900px) {
+  .menuContainer {
+    padding: calc(18px + var(--safe-top)) calc(16px + var(--safe-right)) calc(12px + var(--safe-bottom)) calc(16px + var(--safe-left));
+    overflow-y: auto;
+    gap: 20px;
+  }
+  .panoramaBackdrop { background-image: url('/textures/voxel_forest_panorama.jpg'); background-position: 46% center; }
+  .topSection { height: auto; flex: 1 0 auto; justify-content: center; min-height: 130px; }
+  .mobileBrand { display: block; width: 100%; max-width: 600px; height: auto; object-fit: contain; }
+  .centerSection { flex: 0 0 auto; width: 100%; max-width: 360px; margin: 0 auto; gap: 10px; }
+  .bottomSection { flex: 1 0 auto; align-items: flex-end; padding: 0; min-height: 44px; }
+  .footerCenter { display: none; }
+  .footerLeft { font-size: 12px; padding-bottom: 12px; }
+  .iconToggleBtn { min-width: var(--touch-target); min-height: var(--touch-target); }
+}
+@media (max-width: 900px) and (max-height: 450px) {
+  .menuContainer { gap: 12px; }
+  .topSection { min-height: 80px; }
+  .mobileBrand { max-width: 320px; }
+  .centerSection { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 600px; }
+}

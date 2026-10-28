@@ -1,0 +1,1103 @@
+/* MineNotes - Minecraft Music Discs Jukebox GUI */
+
+.jukeboxOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Modal Window Style */
+.jukeboxModal {
+  width: 520px;
+  max-width: 96vw;
+  max-height: 92vh;
+  background-color: #c6c6c6;
+  border-top: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #555555;
+  border-bottom: 3px solid #555555;
+  box-shadow: inset 1px 1px 0px #dbdbdb, inset -1px -1px 0px #373737, 0 16px 40px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px;
+  box-sizing: border-box;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* Desktop Docked Side Panel Mode (beside Book & Quill) */
+.jukeboxDocked {
+  position: fixed;
+  top: 48px;
+  right: 18px;
+  bottom: 24px;
+  width: 380px;
+  max-width: calc(100vw - 36px);
+  background-color: #c6c6c6;
+  border-top: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #555555;
+  border-bottom: 3px solid #555555;
+  box-shadow: inset 1px 1px 0px #dbdbdb, inset -1px -1px 0px #373737, 0 12px 32px rgba(0, 0, 0, 0.75);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  user-select: none;
+  animation: slideInDock 0.25s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+@keyframes slideInDock {
+  from {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Header */
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #555555;
+}
+
+.headerTitle {
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  color: #3f3f3f;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dockToggleBtn,
+.closeBtn {
+  background-color: #8b8b8b;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #373737;
+  border-bottom: 2px solid #373737;
+  color: #1a1a1a;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+}
+
+.dockToggleBtn:hover,
+.closeBtn:hover {
+  background-color: #a0a0a0;
+}
+
+.dockToggleBtn:active,
+.closeBtn:active {
+  background-color: #727272;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* Visible YouTube Player Section */
+.videoPlayerWrapper {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 204px;
+  background-color: #000000;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.iframeTarget {
+  width: 100%;
+  height: 100%;
+}
+
+.playerNoticeOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(18, 18, 18, 0.94);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.noticeText {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  color: #ffff55;
+  margin: 8px 0;
+  line-height: 18px;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.watchOnYtBtn {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: #000000;
+  background-color: #ff5555;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #550000;
+  border-bottom: 2px solid #550000;
+  padding: 4px 10px;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 6px;
+  display: inline-block;
+}
+
+.watchOnYtBtn:hover {
+  background-color: #ff7777;
+}
+
+/* Now Playing Information Plate */
+.nowPlayingCard {
+  background-color: #8b8b8b;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.nowPlayingInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.nowPlayingLabel {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #373737;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+}
+
+.nowPlayingTitle {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: #ffff55;
+  text-shadow: 1px 1px 0px #3f3f00;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nowPlayingAlbum {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px #000000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Playback Controls Bar */
+.controlsBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  background-color: #9e9e9e;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #373737;
+  border-bottom: 2px solid #373737;
+  padding: 4px 8px;
+  box-sizing: border-box;
+}
+
+.playbackButtons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.controlBtn {
+  width: 28px;
+  height: 28px;
+  background-color: #8b8b8b;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #373737;
+  border-bottom: 2px solid #373737;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.controlBtn:hover {
+  background-color: #a0a0a0;
+}
+
+.controlBtn:active {
+  background-color: #727272;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.playPauseBtn {
+  width: 32px;
+  height: 32px;
+  background-color: #55ff55;
+  color: #000000;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #00aa00;
+  border-bottom: 2px solid #00aa00;
+}
+
+.playPauseBtn:hover {
+  background-color: #77ff77;
+}
+
+.volumeSection {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  max-width: 140px;
+}
+
+.volumeSlider {
+  flex: 1;
+  height: 6px;
+  appearance: none;
+  background-color: #373737;
+  outline: none;
+  border-bottom: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  cursor: pointer;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 16px;
+  background-color: #8b8b8b;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  cursor: pointer;
+}
+
+/* Track List Container */
+.trackListContainer {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  background-color: #8b8b8b;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-sizing: border-box;
+}
+
+/* Custom Minecraft scrollbar */
+.trackListContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.trackListContainer::-webkit-scrollbar-track {
+  background: #373737;
+}
+
+.trackListContainer::-webkit-scrollbar-thumb {
+  background: #8b8b8b;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #222222;
+  border-bottom: 1px solid #222222;
+}
+
+/* Track Item */
+.trackItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  background-color: #a0a0a0;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #555555;
+  border-bottom: 1px solid #555555;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.1s;
+}
+
+.trackItem:hover {
+  background-color: #b5b5b5;
+}
+
+.trackItemActive {
+  background-color: #373737;
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+.trackItemActive .trackTitle {
+  color: #ffff55;
+  text-shadow: 1px 1px 0px #3f3f00;
+}
+
+.trackItemActive .trackAlbum {
+  color: #aaaaaa;
+}
+
+.trackItemActive .trackIndex {
+  color: #ffff55;
+}
+
+.discSlot {
+  width: 26px;
+  height: 26px;
+  background-color: #555555;
+  border-top: 1px solid #222222;
+  border-left: 1px solid #222222;
+  border-right: 1px solid #888888;
+  border-bottom: 1px solid #888888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.trackDetails {
+  flex: 1;
+  min-width: 0;
+}
+
+.trackTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trackIndex {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #373737;
+}
+
+.trackTitle {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nowPlayingBadge {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #80c71f;
+  background-color: #1a3205;
+  padding: 1px 4px;
+  border: 1px solid #80c71f;
+  letter-spacing: 0px;
+}
+
+.trackAlbum {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #555555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trackDuration {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #222222;
+  flex-shrink: 0;
+}
+
+.trackItemActive .trackDuration {
+  color: #ffff55;
+}
+
+/* ========================================================
+   PERSISTENT JUKBOX - BACKDROP & FIXED MODAL
+   ======================================================== */
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 998;
+}
+
+.jukeboxModalFixed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 520px;
+  max-width: 96vw;
+  max-height: 92vh;
+  background-color: #c6c6c6;
+  border-top: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #555555;
+  border-bottom: 3px solid #555555;
+  box-shadow: inset 1px 1px 0px #dbdbdb, inset -1px -1px 0px #373737, 0 16px 40px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px;
+  box-sizing: border-box;
+  user-select: none;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: popInModal 0.18s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+@keyframes popInModal {
+  from {
+    transform: translate(-50%, -46%) scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================================================
+   COMPACT DOCKED JUKBOX (VISIBLE OFFICIAL MINI-PLAYER)
+   Compliant with YouTube Developer Policies (>= 200x200 viewport)
+   ======================================================== */
+
+.compactContainer {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  width: 284px;
+  max-width: calc(100vw - 36px);
+  background-color: #c6c6c6;
+  border-top: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #555555;
+  border-bottom: 3px solid #555555;
+  box-shadow: inset 1px 1px 0px #dbdbdb, inset -1px -1px 0px #373737, 0 10px 28px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  user-select: none;
+  z-index: 995;
+  animation: popInCompact 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+@keyframes popInCompact {
+  from {
+    transform: scale(0.92) translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.compactHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #555555;
+}
+
+.compactHeaderTitle {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: #222222;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 190px;
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
+.videoContainerCompact {
+  position: relative;
+  width: 100%;
+  height: 204px;
+  min-height: 204px;
+  background-color: #000000;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.compactControlsBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding-top: 4px;
+  border-top: 1px solid #999999;
+}
+
+.compactPlaybackButtons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.compactTrackInfo {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #333333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
+}
+
+/* Status Badges */
+.badgePlaying {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #80c71f;
+  background-color: #1a3205;
+  padding: 1px 4px;
+  border: 1px solid #80c71f;
+  letter-spacing: 0px;
+}
+
+.badgeReady {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #55ff55;
+  background-color: #1a3205;
+  padding: 1px 4px;
+  border: 1px solid #55ff55;
+  letter-spacing: 0px;
+}
+
+.badgeBuffering {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #ffff55;
+  background-color: #4a4000;
+  padding: 1px 4px;
+  border: 1px solid #d4a017;
+  letter-spacing: 0px;
+  animation: pulseBuffering 1.2s infinite ease-in-out;
+}
+
+@keyframes pulseBuffering {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.badgePaused {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #dddddd;
+  background-color: #373737;
+  padding: 1px 4px;
+  border: 1px solid #777777;
+  letter-spacing: 0px;
+}
+
+.badgeDisabled {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #ffaaaa;
+  background-color: #5c0f0f;
+  padding: 1px 4px;
+  border: 1px solid #ff5555;
+  letter-spacing: 0px;
+}
+
+.badgeUnavailable {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: #ddaaaa;
+  background-color: #421212;
+  padding: 1px 4px;
+  border: 1px solid #8a2222;
+  letter-spacing: 0px;
+}
+
+/* Skip Unavailable Toggle Button */
+.skipToggleBtn {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #333333;
+  background-color: #8b8b8b;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #373737;
+  border-bottom: 2px solid #373737;
+  padding: 2px 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-shadow: 1px 1px 0px #cccccc;
+  white-space: nowrap;
+}
+
+.skipToggleBtn:hover {
+  background-color: #a0a0a0;
+}
+
+.skipToggleActive {
+  background-color: #55aa55;
+  color: #052b05;
+  border-top: 2px solid #aaffaa;
+  border-left: 2px solid #aaffaa;
+  border-right: 2px solid #1a551a;
+  border-bottom: 2px solid #1a551a;
+  text-shadow: 1px 1px 0px #bbf5bb;
+}
+
+.skipToggleActive:hover {
+  background-color: #66bb66;
+}
+
+/* Buffering Corner Pill */
+.bufferingPill {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #ffff55;
+  background-color: rgba(0, 0, 0, 0.75);
+  border: 1px solid #d4a017;
+  padding: 2px 6px;
+  z-index: 8;
+  animation: pulseBuffering 1.2s infinite ease-in-out;
+}
+
+/* Retry Button */
+.retryBtn {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: #ffffff;
+  background-color: #5555ff;
+  border-top: 2px solid #aaaaff;
+  border-left: 2px solid #aaaaff;
+  border-right: 2px solid #0000aa;
+  border-bottom: 2px solid #0000aa;
+  padding: 4px 10px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.retryBtn:hover {
+  background-color: #7777ff;
+}
+
+.controlBtnDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(80%);
+}
+
+/* ========================================================
+   JUKEBOX 2.0 — LIBRARY TABS & CUSTOM MEDIA GUI
+   ======================================================== */
+
+.libraryTabsBar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 6px;
+  border-bottom: 2px solid #555555;
+  padding-bottom: 4px;
+}
+
+.tabButton {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #333333;
+  background-color: #8b8b8b;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #373737;
+  border-bottom: 2px solid #373737;
+  padding: 3px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-shadow: 1px 1px 0px #cccccc;
+}
+
+.tabButton:hover {
+  background-color: #a0a0a0;
+}
+
+.tabButtonActive {
+  background-color: #373737;
+  color: #ffff55;
+  border-top: 2px solid #1a1a1a;
+  border-left: 2px solid #1a1a1a;
+  border-right: 2px solid #777777;
+  border-bottom: 2px solid #777777;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.tabBadge {
+  background-color: #222222;
+  color: #ffffff;
+  font-size: 9px;
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+.addMusicBtn {
+  margin-left: auto;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #ffffff;
+  background-color: #2d692d;
+  border-top: 2px solid #55bb55;
+  border-left: 2px solid #55bb55;
+  border-right: 2px solid #133a13;
+  border-bottom: 2px solid #133a13;
+  padding: 3px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.addMusicBtn:hover {
+  background-color: #3d803d;
+}
+
+.addMusicBtn:active {
+  background-color: #1a4d1a;
+  border-top: 2px solid #133a13;
+  border-left: 2px solid #133a13;
+  border-right: 2px solid #55bb55;
+  border-bottom: 2px solid #55bb55;
+}
+
+/* Modal Window for Add to Jukebox */
+.modalBackdropTop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1005;
+  top: var(--app-top);
+  height: var(--app-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.addMusicModal {
+  width: 440px;
+  max-width: 95vw;
+  background-color: #c6c6c6;
+  border-top: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #555555;
+  border-bottom: 3px solid #555555;
+  box-shadow: inset 1px 1px 0px #dbdbdb, inset -1px -1px 0px #373737, 0 16px 40px rgba(0, 0, 0, 0.85);
+  padding: 12px 14px;
+  box-sizing: border-box;
+  animation: popInModal 0.15s cubic-bezier(0.1, 0.9, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.addMusicTitle {
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  color: #2b2b2b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 1px 1px 0px #ffffff;
+  border-bottom: 2px solid #555555;
+  padding-bottom: 6px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inputLabel {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #373737;
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
+.minecraftInput {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: #ffffff;
+  background-color: #1a1a1a;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #777777;
+  border-bottom: 2px solid #777777;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  outline: none;
+  width: 100%;
+}
+
+.minecraftInput:focus {
+  border-color: #ffff55;
+  box-shadow: 0 0 0 1px #ffff55;
+}
+
+.previewBox {
+  padding: 6px 8px;
+  background-color: #9e9e9e;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  box-sizing: border-box;
+}
+
+.previewValid {
+  color: #0d470d;
+  text-shadow: 1px 1px 0px #aaffaa;
+}
+
+.previewInvalid {
+  color: #550000;
+  text-shadow: 1px 1px 0px #ffaaaa;
+}
+
+.modalActionsRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 2px solid #555555;
+}
+
+.pixelModalBtn {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  padding: 5px 12px;
+  cursor: pointer;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #373737;
+  border-bottom: 2px solid #373737;
+  background-color: #8b8b8b;
+  color: #222222;
+}
+
+.pixelModalBtn:hover {
+  background-color: #a0a0a0;
+}
+
+.pixelModalBtnPrimary {
+  background-color: #2b692b;
+  color: #ffffff;
+  border-top: 2px solid #55bb55;
+  border-left: 2px solid #55bb55;
+  border-right: 2px solid #133a13;
+  border-bottom: 2px solid #133a13;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.pixelModalBtnPrimary:hover {
+  background-color: #3b7d3b;
+}
+
+.pixelModalBtnPlaylist {
+  background-color: #2b4f69;
+  color: #ffffff;
+  border-top: 2px solid #558dbb;
+  border-left: 2px solid #558dbb;
+  border-right: 2px solid #13273a;
+  border-bottom: 2px solid #13273a;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.pixelModalBtnPlaylist:hover {
+  background-color: #396382;
+}
+
+.pixelModalBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(80%);
+}
+
+/* Custom Item Buttons */
+.itemActionBtns {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.iconSmallBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  color: #555555;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconSmallBtn:hover {
+  color: #ffffff;
+}
+
+.favActive {
+  color: #fed83d;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.emptyState {
+  padding: 24px 16px;
+  text-align: center;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: #444444;
+  line-height: 18px;
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
+
+
+
+/* Phone navigation keeps the book mounted behind an inert, dedicated music screen.
+   Leaving this screen stops and destroys the player; it never plays hidden audio. */
+.mobileScreen {
+  position: fixed; inset: 0; top: var(--app-top); height: var(--app-height); z-index: 1000;
+  width: 100%; display: flex; flex-direction: column; gap: 8px;
+  background: #c6c6c6; border: 3px solid #000;
+  box-shadow: inset 3px 3px #fff, inset -3px -3px #555;
+  padding: calc(12px + var(--safe-top)) calc(10px + var(--safe-right)) calc(12px + var(--safe-bottom)) calc(10px + var(--safe-left));
+  overflow-y: auto; overscroll-behavior: contain;
+}
+.returnButton { min-height: 44px; padding: 6px 10px; background: #747474; color: #fff; border: 2px solid #373737; box-shadow: inset 1px 1px #fff; }
+.mobileScreen > * { flex-shrink: 0; }
+.mobileScreen .headerRow { flex-wrap: wrap; gap: 8px; margin: 0; }
+.mobileScreen .headerTitle { font-size: 17px; }
+.mobileScreen .headerActions { flex-wrap: wrap; justify-content: space-between; width: 100%; gap: 6px; }
+.mobileScreen .headerActions [hidden] { display: none; }
+.mobileScreen .videoPlayerWrapper { position: sticky; top: 0; z-index: 20; margin: 0; }
+.mobileScreen .videoContainer { min-height: 204px; }
+.mobileScreen .libraryTabsBar { flex-wrap: wrap; gap: 6px; margin: 0; }
+.mobileScreen .tabButton, .mobileScreen .addMusicBtn, .mobileScreen .skipToggleBtn { min-height: 44px; padding: 6px 8px; }
+.mobileScreen .addMusicBtn { margin: 0; }
+.mobileScreen .controlsBar { flex-wrap: wrap; padding: 6px; gap: 8px; }
+.mobileScreen .controlBtn { width: 44px; height: 44px; }
+.mobileScreen .volumeSection { max-width: none; flex: 1 1 100px; }
+.mobileScreen .trackListContainer { flex: 0 0 auto; min-height: 180px; overflow: visible; }
+.mobileScreen .trackItem { min-height: 52px; }
+.mobileScreen .iconSmallBtn { min-width: 36px; min-height: 44px; }
+.mobileScreen .trackDuration { font-size: 10px; }
+.addMusicModal { max-height: calc(var(--app-height) - 32px); overflow-y: auto; }
+@media (max-width: 900px) {
+  .addMusicModal { animation: none; max-width: 100%; }
+  .modalActionsRow, .modalActionsRow button { min-width: 0; }
+  .modalActionsRow { flex-wrap: wrap; }
+  .pixelModalBtn { min-height: 44px; }
+  .modalActionsRow, .modalActionsRow button { overflow-wrap: anywhere; }
+  .modalActionsRow { gap: 4px; }
+  .modalActionsRow button { flex: 1 1 auto; }
+  .modalActionsRow { width: 100%; }
+}
+
+.playerStatus { padding: 6px 0; color: #554400; font-size: 12px; }
+.playerNotice { padding: 12px; background: #222; color: #fff; text-align: center; }
+.mobileHint { color: #333; font-size: 12px; line-height: 18px; }

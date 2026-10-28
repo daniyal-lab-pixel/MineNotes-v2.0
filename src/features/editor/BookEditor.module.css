@@ -1,0 +1,525 @@
+/* Authentic Minecraft Book & Quill Editor (Reference 1, 2 & 3) */
+
+.editorContainer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: var(--app-height);
+  top: var(--app-top);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px 14px 16px;
+  background-color: transparent;
+  overflow: hidden;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* In-Game Dark Scrim behind the GUI overlay */
+.editorOverlayScrim {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.38);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ========================================================
+   TOP TITLE & IN-GAME STATUS ROW
+   ======================================================== */
+.topStatusRow {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 32px;
+  max-width: 470px;
+  width: 100%;
+}
+
+.titlePlate {
+  background: rgba(0, 0, 0, 0.75);
+  border: 2px solid #555555;
+  box-shadow: inset 1px 1px 0px #222222, 0 3px 8px rgba(0, 0, 0, 0.6);
+  padding: 3px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  max-width: 220px;
+  box-sizing: border-box;
+}
+
+.titlePlate:hover {
+  border-color: #888888;
+}
+
+.titleText {
+  color: #ffff55;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  text-shadow: 2px 2px 0px #3f3f00;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0px;
+}
+
+.titleInput {
+  background-color: #000000;
+  border: 1px solid #ffffff;
+  color: #ffff55;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  padding: 2px 6px;
+  outline: none;
+  width: 170px;
+}
+
+.topHudButtons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Minecraft Recessed Item Slot Button */
+.slotButton {
+  width: 28px;
+  height: 28px;
+  background-color: #8b8b8b;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  color: #ffffff;
+}
+
+.slotButton:hover {
+  background-color: #a0a0a0;
+}
+
+.slotButton:active {
+  background-color: #727272;
+}
+
+.slotButtonActive {
+  background-color: #555555;
+  border-top: 2px solid #222222;
+  border-left: 2px solid #222222;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.saveStatusText {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  text-shadow: 1px 1px 0px #000000;
+  letter-spacing: 0px;
+}
+
+.savingText {
+  color: #fed83d;
+  text-shadow: 1px 1px 0px #3f3f00;
+  animation: savingPulse 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes savingPulse {
+  0% { opacity: 0.65; }
+  100% { opacity: 1; }
+}
+
+.savedText {
+  color: #80c71f;
+  text-shadow: 1px 1px 0px #1a3205;
+}
+
+/* ========================================================
+   MAIN BOOK WORKSPACE (Centered, authentic game object)
+   ======================================================== */
+.bookWorkspace {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+}
+
+/* ========================================================
+   1. AUTHENTIC SINGLE-PAGE BOOK & QUILL (Reference 2 & 3)
+   ======================================================== */
+.singleBookContainer {
+  position: relative;
+  width: 365px; /* 146 * 2.5 */
+  max-width: 95vw;
+  height: 450px; /* 180 * 2.5 */
+  max-height: calc(100vh - 110px);
+  aspect-ratio: 146 / 180;
+  background-image: url('/textures/book_single.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  /* Left padding clears the authentic red stitches column, right padding clears worn paper edge */
+  padding: 16px 26px 18px 42px;
+}
+
+/* Page Header */
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 22px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+/* Page Number: "Page 1 of 1" */
+.pageNumber {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  font-weight: 400;
+  color: #1a1a1a;
+  text-align: right;
+  letter-spacing: 0px;
+  user-select: none;
+}
+
+/* Editor Writing Content Area - Finite capacity (296x330px), NO internal scrollbars */
+.editorContentArea {
+  width: 296px;
+  height: 330px;
+  max-width: 100%;
+  max-height: 330px;
+  overflow: hidden;
+  padding: 0 2px 2px 0;
+  cursor: text;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.pdfExportToast {
+  color: #ffff55;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  text-shadow: 2px 2px 0px #3f3f00;
+  animation: savingPulse 0.8s ease-in-out infinite alternate;
+}
+
+/* Authentic Minecraft Typography inside Book */
+.editorContentArea :global(.ProseMirror) {
+  min-height: 100%;
+  outline: none;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+  word-break: break-word;
+  letter-spacing: 0px;
+  image-rendering: pixelated;
+  text-rendering: optimizeSpeed;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+}
+
+.editorContentArea :global(.ProseMirror p) {
+  margin: 0 0 4px 0;
+}
+
+.editorContentArea :global(.ProseMirror p:last-child) {
+  margin-bottom: 0;
+}
+
+.editorContentArea :global(.ProseMirror:focus) {
+  outline: none;
+}
+
+/* Blinking pixel underscore caret for empty editor (Reference 3) */
+.editorContentArea :global(.ProseMirror p.is-editor-empty:first-child::before),
+.editorContentArea :global(.ProseMirror p:empty::before) {
+  content: '_';
+  color: #000000;
+  float: left;
+  pointer-events: none;
+  height: 0;
+  font-family: var(--font-pixel);
+  animation: blinkCaret 1s steps(2, start) infinite;
+}
+
+@keyframes blinkCaret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Text Selection */
+.editorContentArea :global(.ProseMirror)::selection,
+.editorContentArea :global(.ProseMirror *) ::selection {
+  background-color: #a4c2f4;
+  color: #000000;
+}
+
+/* Page Footer with Hook Turn Arrows (Bottom Corners) */
+.pageFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 20px;
+  margin-top: 2px;
+}
+
+/* Authentic Minecraft Turn Arrow Button */
+.turnArrowRight {
+  width: 36px;
+  height: 20px;
+  background-image: url('/textures/turn_right.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.turnArrowRight:hover:not(:disabled) {
+  background-image: url('/textures/turn_right_hover.png');
+}
+
+.turnArrowLeft {
+  width: 36px;
+  height: 20px;
+  background-image: url('/textures/turn_left.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.turnArrowLeft:hover:not(:disabled) {
+  background-image: url('/textures/turn_left_hover.png');
+}
+
+/* ========================================================
+   2. AUTHENTIC TWO-PAGE READING MODE (Reference 1)
+   ======================================================== */
+.doubleBookContainer {
+  position: relative;
+  width: 730px; /* 292 * 2.5 */
+  max-width: 96vw;
+  height: 450px; /* 180 * 2.5 */
+  max-height: calc(100vh - 110px);
+  aspect-ratio: 292 / 180;
+  background-image: url('/textures/book_double.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+  box-sizing: border-box;
+  display: flex;
+}
+
+.doubleBookPageHalfLeft {
+  width: 365px;
+  flex: 0 0 365px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 27px 18px 42px;
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+}
+
+.doubleBookPageHalfRight {
+  width: 365px;
+  flex: 0 0 365px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 42px 18px 27px;
+  box-sizing: border-box;
+  min-width: 0;
+  height: 100%;
+  position: relative;
+}
+
+.blankFacingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  user-select: none;
+  opacity: 0.65;
+}
+
+.blankFacingPrompt {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  color: #8b7d6b;
+  text-align: center;
+  line-height: 22px;
+}
+
+/* Top Right Close 'x' on Double Page Book (Reference 1) */
+.doubleCloseBtn {
+  position: absolute;
+  top: 14px;
+  right: 22px;
+  background: none;
+  border: none;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: #555555;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.doubleCloseBtn:hover {
+  color: #000000;
+}
+
+/* ========================================================
+   BOTTOM ACTION BAR (Directly beneath the book)
+   ======================================================== */
+.bottomActionBar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 365px;
+  margin-top: 8px;
+}
+
+.actionBtn {
+  flex: 1;
+  max-width: 160px;
+}
+
+/* Double page bottom bar matching Reference 1 */
+.doubleBottomActionBar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 730px;
+  margin-top: 8px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.doubleSignBtnContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.doubleRightBtnContainer {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Responsive Rules for Mobile Viewport */
+@media (max-width: 600px) {
+  .editorContainer {
+    padding: 6px 8px 10px 8px;
+  }
+
+  .singleBookContainer {
+    width: 320px;
+    height: 395px;
+    padding: 14px 16px 16px 34px;
+  }
+
+  .bottomActionBar {
+    max-width: 320px;
+    margin-top: 6px;
+  }
+}
+
+/* A canonical document with an independently responsive writing surface. */
+.mobilePageIndicator { display: none; }
+.actionsMenu { display: contents; }
+.actionsMenu > summary { display: none; }
+.actionsMenu > .actionsPanel { display: contents; }
+.editorContentArea > div { height: 100%; }
+.editorContentArea :global(.ProseMirror) { user-select: text; -webkit-user-select: text; }
+.slotButton:disabled { opacity: 0.4; cursor: default; }
+
+@media (max-width: 767px), (max-height: 520px) {
+  .editorContainer {
+    top: var(--app-top);
+    height: var(--app-height);
+    width: 100%;
+    padding: calc(8px + var(--safe-top)) calc(8px + var(--safe-right)) calc(8px + var(--safe-bottom)) calc(8px + var(--safe-left));
+    gap: 8px;
+  }
+  .topStatusRow { height: auto; min-height: 44px; max-width: 500px; flex-shrink: 0; gap: 6px; flex-wrap: wrap; }
+  .titlePlate { min-width: 0; flex: 1 1 110px; max-width: none; min-height: 44px; padding: 6px; }
+  .titleInput { width: 100%; min-width: 0; }
+  .titleText { font-size: 15px; }
+  .topHudButtons { gap: 4px; }
+  .slotButton { width: 44px; height: 44px; flex-shrink: 0; }
+  .mobilePageIndicator { display: inline; color: #fff; margin-right: auto; }
+  .saveStatusText { display: flex; justify-content: flex-end; gap: 8px; flex: 0 0 100%; font-size: 12px; min-height: 16px; text-align: right; }
+  .saveStatusText button { color: #ffaaaa; min-height: 32px; }
+  .actionsMenu { display: block; position: relative; }
+  .actionsMenu > summary { display: flex; font-size: 24px; list-style: none; }
+  .actionsMenu > summary::-webkit-details-marker { display: none; }
+  .actionsMenu > .actionsPanel { display: none; }
+  .actionsMenu[open] > .actionsPanel {
+    position: absolute; right: 0; top: calc(100% + 6px); display: flex;
+    gap: 8px; padding: 10px; background: #c6c6c6; border: 3px solid #000;
+    box-shadow: inset 2px 2px #fff, inset -2px -2px #555, 0 6px 20px #0008;
+  }
+  .bookWorkspace { overflow-y: auto; align-items: safe center; padding: 4px 0; overscroll-behavior: contain; }
+  .singleBookContainer {
+    width: min(100%, 365px); height: auto; max-width: none; max-height: none;
+    flex-shrink: 0; aspect-ratio: 146 / 180;
+    padding: 4.4% 6% 4.4% 10.8%;
+  }
+  .pageHeader { height: 24px; margin-bottom: 4px; }
+  .pageNumber { font-size: 14px; }
+  .editorContentArea {
+    flex: 1; min-height: 0; width: 100%; height: auto; max-height: none;
+    overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+  }
+  .editorContentArea :global(.ProseMirror) { font-size: 16px; line-height: 22px; min-height: 100%; }
+  .pageFooter { height: 44px; flex-shrink: 0; margin-top: 2px; }
+  .turnArrowLeft, .turnArrowRight {
+    width: 44px; height: 44px; background-size: 30px 17px; background-position: center;
+  }
+  .bottomActionBar { max-width: 365px; margin-top: 0; flex-shrink: 0; }
+  .actionBtn { max-width: none; }
+}
+
+/* Keep the desktop HUD in one row; details needs a real flex child. */
+@media (min-width: 768px) and (min-height: 521px) {
+  .actionsMenu { display: block; }
+  .actionsMenu > .actionsPanel { display: flex; align-items: center; gap: 6px; }
+}

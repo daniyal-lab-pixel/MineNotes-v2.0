@@ -1,0 +1,118 @@
+/* Book Item Stand on Shelf */
+
+.bookItemContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 76px;
+  min-height: 84px;
+  cursor: pointer;
+  outline: none;
+  padding: 4px 2px 2px;
+  box-sizing: border-box;
+  transition: transform 0.08s ease;
+  user-select: none;
+}
+
+@media (max-width: 480px) {
+  .bookItemContainer {
+    width: 64px;
+    min-height: 76px;
+  }
+}
+
+.bookSlot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  transition: all 0.08s ease;
+}
+
+/* Hover State */
+.bookItemContainer:hover .bookSlot,
+.bookItemContainer:focus-visible .bookSlot {
+  background-color: rgba(255, 255, 255, 0.12);
+  outline: 2px solid #ffaa00;
+  box-shadow: 0 0 8px rgba(255, 170, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Selected State */
+.bookItemSelected .bookSlot {
+  outline: 2px solid #55ffff !important;
+  background-color: rgba(85, 255, 255, 0.16) !important;
+  box-shadow: 0 0 10px rgba(85, 255, 255, 0.6) !important;
+  transform: translateY(-2px);
+}
+
+/* Title Tag Under Book */
+.bookTitleTag {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
+  max-width: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 4px;
+  text-shadow:
+    1px 1px 0px #000000,
+    -1px 1px 0px #000000,
+    1px -1px 0px #000000,
+    -1px -1px 0px #000000;
+  letter-spacing: 0.2px;
+}
+
+/* Context Menu Trigger Button (mobile & discoverability) */
+.menuTriggerBtn {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background-color: #373737;
+  border: 1px solid #747474;
+  color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+  z-index: 5;
+}
+
+.bookItemContainer:hover .menuTriggerBtn,
+.bookItemContainer:focus-within .menuTriggerBtn,
+.bookItemSelected .menuTriggerBtn {
+  opacity: 1;
+}
+
+.menuTriggerBtn:hover {
+  background-color: #555555;
+  border-color: #ffffff;
+  color: #ffffa0;
+}
+
+@media (hover: none) {
+  .menuTriggerBtn {
+    opacity: 0.85;
+  }
+}
+
+@media (max-width: 768px) {
+  .bookItemContainer { width: 100%; min-width: 0; min-height: 118px; padding: 8px 2px 4px; justify-content: flex-start; gap: 6px; }
+  .bookSlot { width: 100%; height: 60px; padding-right: 12px; }
+  .bookTitleTag { max-width: 100%; width: 100%; white-space: normal; overflow-wrap: anywhere; font-size: 12px; line-height: 17px; max-height: 34px; margin: 0; }
+  .menuTriggerBtn { opacity: 1; width: 32px; height: 44px; top: 0; right: 0; font-size: 20px; }
+}

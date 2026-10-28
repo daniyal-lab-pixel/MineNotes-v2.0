@@ -1,0 +1,128 @@
+/* Minecraft Inventory-style Formatting Toolbar */
+
+.toolbarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #8b8b8b;
+  background-image: url('/textures/stone.png');
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+  border: 2px solid #000000;
+  box-shadow: 
+    inset 2px 2px 0px #c6c6c6,
+    inset -2px -2px 0px #373737;
+  padding: 6px 10px;
+  user-select: none;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Individual Toolbar Slot Button */
+.toolBtn {
+  width: 32px;
+  height: 32px;
+  background-color: #727272;
+  border: 2px solid #000000;
+  box-shadow: 
+    inset 1px 1px 0px #a8a8a8,
+    inset -1px -1px 0px #373737;
+  color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+}
+
+.toolBtn:hover:not(:disabled) {
+  background-color: #888888;
+  color: #ffffa0;
+}
+
+.toolBtn:active:not(:disabled),
+.toolBtnActive {
+  background-color: #555555;
+  box-shadow: 
+    inset -1px -1px 0px #a8a8a8,
+    inset 1px 1px 0px #222222;
+  color: #ffffa0;
+}
+
+.toolBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Font Selector */
+.fontSelect {
+  height: 32px;
+  background-color: #727272;
+  border: 2px solid #000000;
+  box-shadow: 
+    inset 1px 1px 0px #a8a8a8,
+    inset -1px -1px 0px #373737;
+  color: #e0e0e0;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  padding: 0 6px;
+  outline: none;
+  cursor: pointer;
+}
+
+.fontSelect:hover {
+  background-color: #888888;
+}
+
+/* 16 Dye Colors Hotbar Tray matching Reference 2 */
+.dyeTray {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background-color: #373737;
+  border: 2px solid #000000;
+  box-shadow: 
+    inset 2px 2px 0px #1a1a1a,
+    inset -2px -2px 0px #555555;
+  padding: 3px;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.dyeSlot {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #1a1a1a;
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.05s ease;
+}
+
+.dyeSlot:hover {
+  transform: scale(1.2);
+  border-color: #ffffff;
+  z-index: 10;
+}
+
+.divider {
+  width: 2px;
+  height: 24px;
+  background-color: #373737;
+  box-shadow: 1px 0 0 #a8a8a8;
+  margin: 0 4px;
+}

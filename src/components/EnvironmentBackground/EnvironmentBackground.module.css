@@ -1,0 +1,186 @@
+/* Minecraft Environmental Background Scene Styles */
+
+.envContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Base Sky Gradients */
+.skyClear {
+  background: linear-gradient(180deg, #3a7be0 0%, #68a2f5 50%, #90c2fb 100%);
+}
+
+.skyRain {
+  background: linear-gradient(180deg, #1b2430 0%, #2e3b4d 55%, #425268 100%);
+}
+
+.skySnow {
+  background: linear-gradient(180deg, #222e3e 0%, #46576d 55%, #6a7f97 100%);
+}
+
+.skyNight {
+  background: linear-gradient(180deg, #04060f 0%, #0a1124 50%, #131c38 100%);
+}
+
+/* Background Landscape Layer */
+.landscapeBackdrop {
+  position: absolute;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  transition: filter 0.6s ease, opacity 0.6s ease;
+  z-index: 1;
+}
+
+.landscapeClear {
+  background-image: url('/textures/voxel_plains_landscape.jpg');
+  filter: brightness(1.02) saturate(1.05);
+  opacity: 0.88;
+}
+
+.landscapeRain {
+  background-image: url('/textures/voxel_plains_landscape.jpg');
+  filter: brightness(0.48) saturate(0.65) hue-rotate(190deg);
+  opacity: 0.82;
+}
+
+.landscapeSnow {
+  background-image: url('/textures/voxel_plains_landscape.jpg');
+  filter: brightness(0.68) saturate(0.35) contrast(1.15) hue-rotate(180deg);
+  opacity: 0.85;
+}
+
+.landscapeNight {
+  background-image: url('/textures/voxel_forest_panorama.jpg');
+  filter: brightness(0.22) saturate(0.7) hue-rotate(210deg);
+  opacity: 0.9;
+}
+
+/* Celestial Elements */
+.celestialContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Minecraft Square Sun */
+.minecraftSun {
+  position: absolute;
+  top: 48px;
+  right: 120px;
+  width: 56px;
+  height: 56px;
+  background-color: #fffde0;
+  box-shadow: 
+    0 0 0 4px rgba(255, 235, 130, 0.4),
+    0 0 32px 12px rgba(255, 240, 160, 0.35);
+  image-rendering: pixelated;
+  animation: sunGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes sunGlow {
+  0% {
+    box-shadow: 
+      0 0 0 4px rgba(255, 235, 130, 0.35),
+      0 0 28px 10px rgba(255, 240, 160, 0.3);
+  }
+  100% {
+    box-shadow: 
+      0 0 0 6px rgba(255, 235, 130, 0.5),
+      0 0 44px 16px rgba(255, 240, 160, 0.45);
+  }
+}
+
+/* Minecraft Square Moon */
+.minecraftMoon {
+  position: absolute;
+  top: 44px;
+  right: 130px;
+  width: 52px;
+  height: 52px;
+  background-color: #f0f4fc;
+  box-shadow: 
+    0 0 0 3px rgba(190, 210, 250, 0.3),
+    0 0 36px 14px rgba(160, 195, 255, 0.25);
+  image-rendering: pixelated;
+  overflow: hidden;
+}
+
+/* Moon Crater Details */
+.moonCrater1 {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  width: 10px;
+  height: 10px;
+  background-color: #c4d0e5;
+}
+
+.moonCrater2 {
+  position: absolute;
+  bottom: 12px;
+  right: 10px;
+  width: 14px;
+  height: 12px;
+  background-color: #b3c2dd;
+}
+
+.moonCrater3 {
+  position: absolute;
+  top: 24px;
+  left: 20px;
+  width: 8px;
+  height: 8px;
+  background-color: #9cb0d0;
+}
+
+/* Canvas Particle Layer (Rain streaks, Snowflakes, Stars, Clouds) */
+.particleCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Atmospheric Fog / Mood Overlays */
+.fogOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.fogRain {
+  background: radial-gradient(circle at 50% 50%, rgba(30, 45, 65, 0.25) 0%, rgba(15, 25, 38, 0.65) 100%);
+}
+
+.fogSnow {
+  background: radial-gradient(circle at 50% 50%, rgba(200, 225, 245, 0.08) 0%, rgba(35, 50, 70, 0.5) 100%);
+}
+
+.fogNight {
+  background: radial-gradient(circle at 50% 50%, rgba(10, 15, 30, 0.15) 0%, rgba(2, 4, 10, 0.7) 100%);
+}
+
+.fogClear {
+  background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .minecraftSun {
+    animation: none;
+  }
+}

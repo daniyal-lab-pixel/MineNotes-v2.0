@@ -1,0 +1,154 @@
+/* Minecraft Environment Selector Popover */
+
+.selectorWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Authentic Minecraft GUI Window Popover */
+.popoverPanel {
+  position: absolute;
+  top: 34px;
+  right: -55px;
+  width: 210px;
+  background-color: #c6c6c6;
+  border-top: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #555555;
+  border-bottom: 3px solid #555555;
+  outline: 2px solid #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
+  padding: 8px 10px 10px 10px;
+  z-index: 1000;
+  image-rendering: pixelated;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.popoverHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  border-bottom: 2px solid #555555;
+  padding-bottom: 4px;
+}
+
+.popoverTitle {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  color: #3f3f3f;
+  text-shadow: 1px 1px 0px #ffffff;
+  font-weight: 700;
+  margin: 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #3f3f3f;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0 2px;
+  line-height: 1;
+}
+
+.closeBtn:hover {
+  color: #b02e26;
+}
+
+.presetList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Minecraft Inset Slot Option Button */
+.presetBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 28px;
+  background-color: #8b8b8b;
+  border-top: 2px solid #373737;
+  border-left: 2px solid #373737;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  padding: 0 8px;
+  box-sizing: border-box;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px #202020;
+  cursor: pointer;
+  text-align: left;
+}
+
+.presetBtn:hover {
+  background-color: #a0a0a0;
+  color: #ffffa0;
+}
+
+.presetBtnActive {
+  background-color: #555555;
+  border-top: 2px solid #202020;
+  border-left: 2px solid #202020;
+  border-right: 2px solid #777777;
+  border-bottom: 2px solid #777777;
+  color: #ffff55;
+  text-shadow: 1px 1px 0px #3f3f00;
+}
+
+.animToggleRow {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 2px solid #a0a0a0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.animLabel {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: #3f3f3f;
+}
+
+.toggleBtn {
+  background-color: #747474;
+  border-top: 2px solid #b0b0b0;
+  border-left: 2px solid #b0b0b0;
+  border-right: 2px solid #3b3b3b;
+  border-bottom: 2px solid #3b3b3b;
+  color: #e0e0e0;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  padding: 2px 6px;
+  cursor: pointer;
+  text-shadow: 1px 1px 0px #202020;
+}
+
+.toggleBtnActive {
+  color: #80c71f;
+  border-top: 2px solid #3b3b3b;
+  border-left: 2px solid #3b3b3b;
+  border-right: 2px solid #b0b0b0;
+  border-bottom: 2px solid #b0b0b0;
+  background-color: #525252;
+}
+
+@media (max-width: 767px), (max-height: 520px) {
+  .popoverPanel { position: fixed; top: calc(var(--app-top) + var(--safe-top) + 118px); right: calc(12px + var(--safe-right)); max-height: calc(var(--app-height) - 150px); overflow-y: auto; }
+  .presetBtn, .toggleBtn, .closeBtn { min-height: 44px; }
+  .closeBtn { min-width: 44px; }
+}
+
+.triggerButton {
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+  background: #8b8b8b; color: #fff; padding: 0;
+  border: 2px solid; border-color: #373737 #fff #fff #373737;
+}
+@media (max-width: 767px), (max-height: 520px), (pointer: coarse) { .triggerButton { width: 44px; height: 44px; } }

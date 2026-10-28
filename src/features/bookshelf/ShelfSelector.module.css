@@ -1,0 +1,154 @@
+/* Shelf Selector Tabs / Sidebar */
+
+.shelfSidebar {
+  width: 170px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: #3b281c;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('/textures/oak_planks.png');
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+  border: 2px solid #000000;
+  box-shadow:
+    inset 2px 2px 0px #241407,
+    inset -2px -2px 0px #5c3b1e;
+  padding: 8px 6px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.shelfTabBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 8px 8px;
+  background-color: #553c26;
+  border: 2px solid #281a0e;
+  box-shadow:
+    inset 1px 1px 0px #7d5735,
+    inset -1px -1px 0px #1e130a;
+  color: #dfdfdf;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  text-shadow: 1px 1px 0px #000000;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.06s ease;
+}
+
+.shelfTabBtn:hover {
+  background-color: #6a4a2f;
+  color: #ffffa0;
+  border-color: #9c7142;
+}
+
+.shelfTabBtnActive {
+  background-color: #37535b !important;
+  border: 2px solid #55ffff !important;
+  box-shadow:
+    inset 2px 2px 0px #008888,
+    inset -2px -2px 0px #55ffff,
+    0 0 8px rgba(85, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+}
+
+.tabLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.tabLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tabBadge {
+  font-size: 11px;
+  color: #ffffa0;
+  opacity: 0.85;
+}
+
+/* New Shelf Button in sidebar */
+.newShelfBtn {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background-color: #4a331f;
+  border: 1px dashed #8b6845;
+  color: #c6b29d;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  text-shadow: 1px 1px 0px #000000;
+  cursor: pointer;
+}
+
+.newShelfBtn:hover {
+  background-color: #5c3e24;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+/* Mobile Shelf Strip / Selector */
+.mobileStrip {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .shelfSidebar {
+    display: none;
+  }
+
+  .mobileStrip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 6px 4px;
+    background-color: #3b281c;
+    border-bottom: 2px solid #000000;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobileStrip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobilePill {
+    flex-shrink: 0;
+    padding: 6px 10px;
+    background-color: #553c26;
+    border: 2px solid #281a0e;
+    color: #dfdfdf;
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    text-shadow: 1px 1px 0px #000000;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .mobilePillActive {
+    background-color: #37535b;
+    border-color: #55ffff;
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobileStrip { flex-shrink: 0; min-width: 0; padding: 4px; gap: 4px; scrollbar-width: thin; }
+  .mobilePill { min-height: 44px; padding: 6px 8px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+}

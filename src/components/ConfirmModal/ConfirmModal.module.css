@@ -1,0 +1,58 @@
+/* Minecraft Modal Dialog Styling */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  top: var(--app-top);
+  height: var(--app-height);
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modalBox {
+  width: 100%;
+  max-width: 420px;
+  background-color: #c6c6c6;
+  border: 4px solid #000000;
+  box-shadow: 
+    inset 4px 4px 0px #ffffff,
+    inset -4px -4px 0px #555555;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #333333;
+}
+
+.modalTitle {
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  color: #1a1a1a;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.modalMessage {
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  color: #333333;
+  text-align: center;
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.modalBox { max-height: calc(var(--app-height) - var(--safe-top) - var(--safe-bottom) - 32px); overflow-y: auto; overscroll-behavior: contain; }
+
+@media (max-width: 767px) { .buttonRow { flex-wrap: wrap; } }
